@@ -20,10 +20,7 @@ shiny::runGitHub("legendary_legends-final", "usfviz")
 ### Dataset 
 Yelp data is taken from https://www.yelp.com/dataset_challenge
 It mainly contains all business data (filtered the restaurant data), check in data, user data and review data. The data is in JSON format. We converted them to CSV. There were some missing neighbourhoods, which were removed.
-### Discussions
-Below are screenshots of the interface of the shiny app.
-![alt text](screenshot3.png)
-![alt text](screenshot4.png)
+
 
 ### Techniques
 #### Las Vegas Map
