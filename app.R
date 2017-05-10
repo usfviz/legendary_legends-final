@@ -3,10 +3,26 @@ library(leaflet)
 library(ggplot2)
 library(tidyr)
 library(plotly)
-library(d3heatmap)
-library(wordcloud2)
-library(RWeka)
-#setwd("~/Documents/Data Viz/project/")
+# library(d3heatmap)
+# library(wordcloud2)
+# library(RWeka)
+
+if(!require(wordcloud2)){
+  install.packages("wordcloud2")
+  library(wordcloud2)
+}
+
+if(!require(RWeka)){
+  install.packages("RWeka")
+  library(RWeka)
+}
+
+if(!require(d3heatmap)){
+  install.packages("d3heatmap")
+  library(d3heatmap)
+}
+
+# setwd("~/MSAN/SpringModule2/622Visual/legendary_legends-final/")
 
 ui <- fluidPage(
   headerPanel("Las Vegas Restaurant Visualizations"),
@@ -99,9 +115,14 @@ server <- function(input, output, session) {
   
   output$histPlot <- renderPlotly({ 
     
-    p <- ggplot(data=df(), aes(x = neighborhood, text =  paste("Avg reviews:", avg_star))) + theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    p <- ggplot(data=df(), aes(x = neighborhood, text =  paste("Avg reviews:", avg_star))) + 
+      theme(text = element_text(size=9), 
+            axis.text.x = element_text(angle = 45, hjust = 1),
+            axis.title=element_text(size=9),
+            axis.title.y=element_text(margin=margin(0,20,0,0))
+            ) +
       geom_bar(fill = "firebrick", alpha = 0.6) + scale_x_discrete() + 
-      xlab("Neighborhood") +
+      xlab("\nNeighborhood") +
       ylab("Number of restaurants")
     ggplotly(p)
   })
